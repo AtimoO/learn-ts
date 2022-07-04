@@ -1,30 +1,33 @@
-let isLoader: boolean | string = "asd";
+/* Общие типы
+const num: number = 123; // boolean, string
+const isLoader: boolean | string = true; // bool or string
 
-let asd = `Hello ${isLoader}`;
-
-const obj: { pages: number } = {
+const obj: { pages: number } = { // obj
   pages: 433,
 }
 
-const arrNum: number[] = [1, 3, 4];
+const arrNum: number[] = [1, 3, 4]; // for array, all number
 const arrStr: string[] = ["1", "2"];
 
 // Только задные типы для каждого свой
-const tuple: [number, string] = [2, "3"];
+const tuple: [number, string] = [2, "3"]; // tuple
 
-// Любой
-let any: any = "123";
+let any: any = true; // Любой тип
+ */
 
-// unknown
-let unk: unknown = "asd";
+function getName(obj: { name: string, surname: string }): string {
+  return `${obj.name} ${obj.surname}`
+}
 
-//Отличин между unk and any
-// let news: string = any;
-// let newss: string = unk;
-// const doSmth = (arg: any) => {
-//   arg.raveOn();
-// };
-
-// const doSmthSafe = (arg: unknown) => {
-//   arg.raveOn();
+// const getFullName = (name: string, surname: string): string => {
+//   return `${name} ${surname}`
 // }
+
+const userObj: { name: string, surname: string, city: string, age: number } = {
+  name: "Name",
+  surname: "Surname",
+  city: "City",
+  age: 24,
+}
+
+console.log(getName(userObj));
