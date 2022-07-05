@@ -53,5 +53,55 @@ const arrSp: readonly [number, string, ...boolean[]] = [1, "asd", false, true];
 
 console.log(rez);
 */
+/*
+enum Status {
+  SUCCESS = 1, // можно и строку SUCCESS = "STRING"
+  FAILED = 2,
+  LOADING = 3,
+}
 
+const resz = {
+  message: "Success",
+  status: Status.SUCCESS,
+};
+
+enum StatusReq {
+  PUBLISHED = "published",
+  DRAFT = "draft",
+  DELETED = "deleted",
+}
+
+async function getFaqs(req: { topicId: number; status?: StatusReq }): Promise<{
+  question: string;
+  answer: string;
+  tags: string[];
+  likes: number;
+  status: StatusReq;
+}[]> {
+  const res = await fetch("/faqs", {
+    method: "POST",
+    body: JSON.stringify(req),
+  });
+  const data = await res.json();
+  return data;
+}
+*/
+
+// union
+function logId(id: string | number) {
+  if (typeof id === "string") {
+    // сужение типов, для string
+    id.toLocaleLowerCase();
+  } else {
+    id.toPrecision(); // для number
+  }
+}
+
+function logObj(obj: { a: number } | { b: number }) {
+  if ("a" in obj) {
+    console.log(obj.a);
+  } else {
+    console.log(obj.b);
+  }
+}
 
