@@ -17,3 +17,9 @@ export interface IConfig {
     "Content-Type": string;
   };
 }
+
+export interface ITodo {
+  id: number;
+  title: string;
+  completed: boolean;
+}

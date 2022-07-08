@@ -1,36 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { IUser } from "../types/types";
-import { getUsers } from "../utils/api";
-import Card, { CardColor } from "./card";
-import UserList from "./user-list";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route,
+  Switch,
+} from "react-router-dom";
+import TodoItemPage from "../pages/todo-item-page";
+import TodoPage from "../pages/todo-page";
+import UserItemPage from "../pages/user-item-page";
+import UserPage from "../pages/user-page";
 
 function App() {
-  const [users, setUsers] = useState<IUser[]>([]);
-
-  useEffect(() => {
-    getUsers()
-      .then((res) => {
-        setUsers(res);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  }, []);
 
   return (
-    <>
-      <Card
-        width="150px"
-        height="150px"
-        background={CardColor.green}
-        onClick={(a) => {
-          console.log(a);
-        }}
-      >
-        <button>Btn</button>
-      </Card>
-      <UserList users={users} />
-    </>
+    <Router>
+      <NavLink style={{margin: 10}} to={"/"}>Главная</NavLink>
+      <NavLink style={{margin: 10}} to={"/users"}>Список пользователей</NavLink>
+      <NavLink style={{margin: 10}} to={"/todos"}>Список дел</NavLink>
+      <Switch>
+        <Route path={"/users"} exact>
+          <UserPage />
+        </Route>
+        <Route path={"/users/:id"}>
+          <UserItemPage />
+        </Route>
+        <Route path={"/todos"} exact>
+          <TodoPage />
+        </Route>
+        <Route path={"/todos/:id"}>
+          <TodoItemPage />
+        </Route>
+        <Route path={"/"} exact>
+          <h1>HOME PAGE</h1>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

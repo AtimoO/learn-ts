@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 export interface ListProps<T> {
   items: T[];
@@ -6,10 +6,15 @@ export interface ListProps<T> {
 }
 
 function List<T>(props: ListProps<T>) {
-
+  return (
+    <div>
+      {props.items.map(props.rendetItem)}
+    </div>
+  )
 }
 
-// const List = (): FC<ListProps> => {
-//   return <div>List</div>;
+// const List = (props: ListProps<any>) => {
+//   return <div>{props.items.map(props.rendetItem)}</div>;
 // };
+
 export default List;
